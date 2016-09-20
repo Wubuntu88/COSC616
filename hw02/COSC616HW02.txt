@@ -1,0 +1,38 @@
+COSC 616 HW 02
+William Gillespie
+Sept 20, 2016
+Happy Reading!!
+1)
+function is_palindrom = is_palindrome(arr)
+reverse = fliplr(arr);
+is_palindrom = strcmp(arr, reverse);
+end
+
+2)
+function is_subset = is_subset(set1, set2)
+is_subset = sum(ismember(set1, set2)) == length(set1);
+end
+
+3)
+function remain = removeElems(arr1, arr2)
+for i = 1:length(arr1)
+    indexToRemove = find(arr1(i) == arr2, 1, 'last');
+    if isempty(indexToRemove) == false
+        arr2(indexToRemove) = [];
+    end
+    remain = arr2;
+end
+end
+
+4)
+function res = all_in(a, b)
+for i = 1:length(a)
+    matchingIndex = find(a(i) == b, 1, 'last');
+    if length(matchingIndex) ~= 1
+        res = 0;
+        return
+    end
+    b(matchingIndex) = [];
+end
+res = 1;
+end
