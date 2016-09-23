@@ -6,6 +6,6 @@ X = [0, width];
 
 level = 0;
 iftrace = true;
-PLACE(X, L, level, iftrace)
+Place(L, X, level, iftrace)
 end
 

@@ -1,0 +1,49 @@
+ 
+Samples
+
+ L1 = [1,5,9,4,8,4];
+ L2 = [2,4,7,10,2,5,8,3,6,3];
+ L3 = [1,3,4,5,7,12,13,15,2,3,4,6,11,12,14,1,2,4,9,10,12,1,3,8,9,11,2,7,8,10,5,6,8,1,3,2];
+ L4 = [1,3,8,9,11,12,13,15,2,7,8,10,11,12,14,5,6,8,9,10,12,1,3,4,5,7,2,3,4,6,1,2,4,1,3,2];
+ L5 = [1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,5,5,6,6,7,7,8,8,8,9,9,10,10,11,11,12,12,12,13,14,15];
+ L6 = [1,1,1,2,2,3,3,3,4,4,5,5,6,6,6,9,9,10,11,12,15];
+
+Sample Runs
+
+L1, when Trace? is unchecked
+
+------------ Solution found: 0 4 8 9
+------------ Solution found: 0 1 5 9
+
+L1, when Trace? is checked
+
+---- try   y=8
+-------- try   y=5 FAILS
+-------- try w-y=4
+------------ Solution found: 0 4 8 9
+---- try w-y=1
+-------- try   y=5
+------------ Solution found: 0 1 5 9
+-------- try w-y=4 FAIL
+
+L = [2,2,3,3,4,5,6,7,8,10], when Trace? is unchecked
+
+---------------- Solution found: 0 3 6 8 10
+---------------- Solution found: 0 2 4 7 10
+
+L = [2,2,3,3,4,5,6,7,8,10], when Trace? is checked
+
+---- try   y=8
+-------- try   y=7 FAILS
+-------- try w-y=3
+------------ try   y=6
+---------------- Solution found: 0 3 6 8 10
+------------ try w-y=4 FAILS
+---- try w-y=2
+-------- try   y=7
+------------ try   y=6 FAILS
+------------ try w-y=4
+---------------- Solution found: 0 2 4 7 10
+-------- try w-y=3 FAIL
+
+Tip: use command diary to save MATLAB output into a file
