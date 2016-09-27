@@ -1,3 +1,5 @@
+% @author: William Gillespie
+
 function PartialDigestProblem(L,trace)
 width = max(L);
 lastIndex = find(L == width, 1, 'last');
@@ -61,7 +63,11 @@ end
 % -----------------------------------------------------
 % -------------end of PLACE()
 % -----------------------------------------------------
-
+%{
+the remove method removes all elements in arr1 from arr1.
+there can be duplicates in arr1 and and all duplicates
+from arr1 must be removed from arr2.
+%}
 function remain = remove(arr1, arr2)
 for i = 1:length(arr1)
     indexToRemove = find(arr1(i) == arr2, 1, 'last');
@@ -75,6 +81,11 @@ end
 % -------------end of remove()
 % -----------------------------------------------------
 
+%{
+all_in returns 1 if all of the elements in a are in b.
+a can have duplicates, and all of the duplicate elements
+in a must be in b.
+%}
 function res = all_in(a, b)
 for i = 1:length(a)
     matchingIndex = find(a(i) == b, 1, 'last');
@@ -89,4 +100,3 @@ end
 % -----------------------------------------------------
 % -------------end of allin()
 % -----------------------------------------------------
-
