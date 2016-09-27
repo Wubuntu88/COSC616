@@ -1,0 +1,26 @@
+output from the two first samples in the PDPsample.txt file
+
+L1 = [1,5,9,4,8,4];
+WilliamGillespie01(L1, true);
+---- try y = 8
+-------- try y = 5 FAILS
+-------- try w - y = 4
+------------solution found:0 4 8 9
+---- try w - y = 1
+-------- try y = 5
+------------solution found:0 1 5 9
+-------- try w - y = 4 FAILS
+L2 = [2,4,7,10,2,5,8,3,6,3];
+WilliamGillespie01(L2, true);
+---- try y = 8
+-------- try y = 7 FAILS
+-------- try w - y = 3
+------------ try y = 6
+----------------solution found:0 3 6 8 10
+------------ try w - y = 4 FAILS
+---- try w - y = 2
+-------- try y = 7
+------------ try y = 6 FAILS
+------------ try w - y = 4
+----------------solution found:0 2 4 7 10
+-------- try w - y = 3 FAILS
