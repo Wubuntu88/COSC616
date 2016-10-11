@@ -1,13 +1,13 @@
 function arr = actg2num(string)
-len = strlength(string);
-arr = zeroes(len, 1);
+len = length(string);
+arr = zeros(len, 1);
 for i=1:len
-  c = string(i)
-  if strcmp(c, "A")
+  c = string(i);
+  if strcmp(c, 'A')
     arr(i) = 1;
-  elseif strcmp(c, "T")
+  elseif strcmp(c, 'T')
     arr(i) = 2;
-  elseif strcmp(c, "G")
+  elseif strcmp(c, 'G')
     arr(i) = 3;
   else
     arr(i) = 4;
