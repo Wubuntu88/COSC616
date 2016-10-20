@@ -1,0 +1,78 @@
+/************/
+BBMS1 output
+/************/
+
+>> DNA1=['CCTGATAGACGCTATCTGGCTATCCAGGTACTTAGGTCCTCTGTGCGAATCTATGCGTTTCCAACCAT'; ...
+  'AGTACTGGTGTACATTTGATCCATACGTACACCGGCAACCTGAAACAAACGCTCAGAACCAGAAGTGC'; ...
+  'AAACGTTAGTGCACCCTCTTTCTTCGTGGCTCTGGCCAACGAGGGCTGATGTATAAGACGAAAATTTT'; ...
+  'AGCCTCCGATGTAAGTCATAGCTGTAACTATTACCTGCCACCCCTATTACATCTTACGTCCATATACA'; ...
+  'CTGTTATACAACGCGTCATGGCGGGGTATGCGTTTTGGTCGTCGTACGCTCGATCGTTACCGTACGGC'];
+>> lmer=3;
+>> BFMS1(DNA1, lmer, false);
+Algorithm 1: Simple Brute Force Motif Search
+	Update: best score =   9 at ( 1 1 1 1 2)
+	Update: best Motif so far = (AGT)
+	Update: best score =  10 at ( 1 1 1 14 2)
+	Update: best Motif so far = (AGT)
+	Update: best score =  11 at ( 1 1 3 27 8)
+	Update: best Motif so far = (ACT)
+	Update: best score =  12 at ( 1 1 4 3 14)
+	Update: best Motif so far = (CGT)
+	Update: best score =  13 at ( 1 1 4 57 14)
+	Update: best Motif so far = (CGT)
+
+/************/
+BBMS2 output
+/************/
+
+>> DNA1=['CCTGATAGACGCTATCTGGCTATCCAGGTACTTAGGTCCTCTGTGCGAATCTATGCGTTTCCAACCAT'; ...
+  'AGTACTGGTGTACATTTGATCCATACGTACACCGGCAACCTGAAACAAACGCTCAGAACCAGAAGTGC'; ...
+  'AAACGTTAGTGCACCCTCTTTCTTCGTGGCTCTGGCCAACGAGGGCTGATGTATAAGACGAAAATTTT'; ...
+  'AGCCTCCGATGTAAGTCATAGCTGTAACTATTACCTGCCACCCCTATTACATCTTACGTCCATATACA'; ...
+  'CTGTTATACAACGCGTCATGGCGGGGTATGCGTTTTGGTCGTCGTACGCTCGATCGTTACCGTACGGC'];
+>> lmer=8;
+>> BBMS2(DNA1, lmer, false);
+Algorithm 2: Branch and Bound Motif Search
+	Update: best score =  22 at ( 1 1 1 1 2)
+	Update: best score =  24 at ( 1 1 1 1 14)
+	Update: best score =  26 at ( 1 1 1 14 2)
+	Update: best score =  27 at ( 1 1 1 14 14)
+	Update: best score =  28 at ( 1 1 2 14 2)
+	Update: best score =  29 at ( 1 1 4 14 14)
+	Update: best score =  30 at ( 1 1 22 14 14)
+
+/************/
+SPMS3 output
+/************/
+
+SPMS3(DNA1, l_mer, false);
+Algorithm 3: Simple Median Search
+update best: AAAAAAAA
+update best: AAAAAAAT
+update best: AAAAAAAC
+update best: AAAAAACG
+update best: AAACGATA
+update best: AAACGTTA
+update best: TTAGGTCC
+update best: CTTACGTC
+update best: CTGATGTA
+--final best word: CTGATGTA
+end
+
+/************/
+BBMS4 output
+/************/
+
+BBMS4(DNA1, l_mer, false);
+Algorithm 4: Branch and Bound Median Search
+update best: AAAAAAAA
+update best: AAAAAAAT
+update best: AAAAAAAC
+update best: AAAAAACG
+update best: AAACGATA
+update best: AAACGTTA
+update best: TTAGGTCC
+update best: CTTACGTC
+update best: CTGATGTA
+--final best word: CTGATGTA
+end

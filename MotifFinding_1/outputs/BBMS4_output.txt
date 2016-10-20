@@ -1,7 +1,7 @@
-SPMS3 output
+BBMS4 output
 
-SPMS3(DNA1, l_mer, false);
-Algorithm 3: Simple Median Search
+BBMS4(DNA1, l_mer, false);
+Algorithm 4: Branch and Bound Median Search
 update best: AAAAAAAA
 update best: AAAAAAAT
 update best: AAAAAAAC
