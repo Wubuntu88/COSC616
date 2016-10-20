@@ -9,32 +9,38 @@ bestPositions = ones(1, l_mer);
 i = 1;
 while i > 0
     if i < t
-        %ERROR HERE WHEN L_MER IS 3 INDEX OUT OF BOUNDS FOR MY_SCORE FUNC
-        %when i is lmer
-        optimisticScore = my_score(s, DNA, i) + (t-i) * l_mer;
+        %i is the number of DNA strands to be selected (or the level)
+        optimisticScore = scoreOfSubset(s, DNA, l_mer, i) + (t-i) * l_mer;
+        if iftrace == true
+                nodesString = zzPrintNodes(s, i);
+                disp(sprintf('\tBypass candidate: %s', nodesString));
+        end
         if optimisticScore < bestScore
             [s, i] = byPass(s, i, t, limit);
             if iftrace == true
                 nodesString = zzPrintNodes(s, i);
-                disp(sprintf('\tBypass Candidate: %s', nodesString));
+                disp(sprintf('\tBypassed at leaf: %s', nodesString));
             end
+            
         else
             [s, i] = nextVertex(s, i, length(s), limit);
         end
-        %{
+        
         if iftrace == true
             progress = '';
             for i=1:length(s)
                 progress = strcat(progress, sprintf(' %3d', s(i)));
             end
-            disp(sprintf('\tcurrently at: (%s), best so far = %3d', progress, bestScore));
+            disp(sprintf('\tcurrently at: (%s), best so far = %3d, best word = %s', progress, bestScore, bestMotif));
         end
-            %}
+        
     else
+        
         if iftrace == true
-                nodesString = zzPrintNodes(s, i);
-                disp(sprintf('\t--pass Candidate: %s', nodesString)); 
+            nodesString = zzPrintNodes(s, i);
+            disp(sprintf('\t--pass Candidate: %s', nodesString)); 
         end
+        
         [theScore, consensusString] = my_score(s, DNA, l_mer);
         if theScore > bestScore
             bestScore = theScore;
@@ -49,6 +55,7 @@ while i > 0
         end
         [s, i] = nextVertex(s, i, length(s), limit);
     end
+    
 end
 cstr = bestMotif;
 sc = bestScore;
