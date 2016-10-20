@@ -6,7 +6,7 @@ s = ones(1, t); % # of items in s is equal to t
 [bestScore, bestMotif] = my_score(s, DNA, l_mer);
 
 L = length(s);
-limit = 68-l_mer+1;
+limit = n-l_mer+1;
 
 while true
     
