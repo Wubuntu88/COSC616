@@ -45,4 +45,3 @@ for i=1:length(s)
 end
 fprintf('--final best positions: ( %s )\n', positions);
 end
-        
