@@ -35,15 +35,5 @@ while true
         disp(sprintf('\tUpdate: best score = %3d at (%s)', bestScore, sol));
         disp(sprintf('\tUpdate: best Motif so far = (%s)', bestMotif));
     end
-        
-    
 end
 end
-
-
-
-
-
-
-
-
