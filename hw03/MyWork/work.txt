@@ -1,0 +1,63 @@
+1) From iris_dataset, create iris45 as follows
+20:35, 70:85, 110:125
+
+% load data; make subset of data
+load fisheriris
+iris = meas;
+iris1 = iris(20:35,:);
+iris2 = iris(70:85,:);
+iris3 = iris(110:125,:);
+iris_subset = [iris1; iris2; iris3];
+
+% create principle components (only the first two)
+PC = princomp(iris_subset);
+iris2D = iris_subset * PC;
+iris2D = iris2D(:, 1:2);
+
+% make class labels
+iris2Dclass = [zeros(48,1) iris2D];
+iris2Dclass(1:16, 1) = 1;
+iris2Dclass(17:32, 1) = 2;
+iris2Dclass(33:48, 1) = 3;
+
+% part 3: create colored 2D scatter plot
+plotClass2D(iris2Dclass, 1, 12);
+
+% part 4: create parrallel coordinate plot
+hold on 
+parallelcoords (iris_subset(1:16, :), 'Color', 'r')
+parallelcoords (iris_subset(17:32, :), 'Color', 'b')
+parallelcoords (iris_subset(33:48, :), 'Color', 'g')
+hold off
+
+% part 5: heat plots
+
+% plot1 - euclidean single
+clustergram(iris_subset, 'linkage', 'single', ...
+	'ColumnPDist', 'euclidean', ....
+	'Standardize', 'column')
+
+% plot2 - euclidean complete
+clustergram(iris_subset, 'linkage', 'complete', ...
+	'ColumnPDist', 'euclidean', ....
+	'Standardize', 'column')
+
+% plot3 - euclidean average
+clustergram(iris_subset, 'linkage', 'average', ...
+	'ColumnPDist', 'euclidean', ....
+	'Standardize', 'column')
+
+% plot4 - pearson single
+clustergram(iris_subset, 'linkage', 'single', ...
+	'ColumnPDist', 'correlation', ....
+	'Standardize', 'column')
+
+% plot5 - pearson single
+clustergram(iris_subset, 'linkage', 'complete', ...
+	'ColumnPDist', 'correlation', ....
+	'Standardize', 'column')
+
+% plot6 - pearson single
+clustergram(iris_subset, 'linkage', 'average', ...
+	'ColumnPDist', 'correlation', ....
+	'Standardize', 'column')

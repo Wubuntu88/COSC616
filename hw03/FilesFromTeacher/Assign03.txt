@@ -1,0 +1,15 @@
+
+Due 11/10 Thursday.
+
+1) From iris_dataset, create iris45 as follows
+20:35, 70:85, 110:125
+
+2) Use PCA to reduce the dimension
+
+3) Create colored 2D scatter plot
+
+4) Create Parallel Coordinate plot
+
+5) Create 6 heat plot (euclidean and pearson) with (single, complete, average) linkage
+
+Online submit of all plots in a zip file.
