@@ -1,0 +1,13 @@
+train50 = load('part1_50_genes/golub_train50_processed.txt');
+train50 = transpose(train(50);
+
+PC = princomp(train50);
+train502D = train50 * PC(:, 1:2);
+
+[rows, cols] = size(train50);
+train50classes = [zeros(rows, 1) train502D];
+
+train50classes(1:27, 1) = 1;
+train50classes(28:rows) = 2;
+
+plotClass2D(train50classes, 1, 12);
