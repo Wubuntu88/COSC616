@@ -1,0 +1,44 @@
+% part 3: Apply PCA then 2D scatter plot
+train50 = load('part1_50_genes/golub_train50_processed.txt');
+train50 = transpose(train50);
+
+PC = princomp(train50);
+train502D = train50 * PC(:, 1:2);
+
+[num_rows, cols] = size(train50);
+train50classes = [zeros(rows, 1) train502D];
+
+lastIndexOfClass1 = 27;
+train50classes(1:lastIndexOfClass1, 1) = 1;
+train50classes(28:num_rows) = 2;
+
+plotClass2D(train50classes, 1, 12);
+
+% part 4: Create parallel coordinate plot
+hold on
+parallelcoords(train50(1:lastIndexOfClass1, :), 'Color', 'r');
+parallelcoords(train50(lastIndexOfClass1 + 1:num_rows, :), 'Color', 'b');
+hold off
+
+% part 5: Create 6 heat plots
+
+clustergram(train50); % with default parameters
+
+% 6 heat plots
+
+% complete linkage ; pearson correlation coefficient
+clustergram(train50, 'linkage', 'complete', 'ColumnPDist', 'correlation', 'Standardize', 'column');
+% complete linkage ; euclidean distance
+clustergram(train50, 'linkage', 'complete', 'ColumnPDist', 'euclidean', 'Standardize', 'column');
+
+% single linkage ; pearson correlation coefficient
+clustergram(train50, 'linkage', 'single', 'ColumnPDist', 'correlation', 'Standardize', 'column');
+% single linkage ; euclidean distance
+clustergram(train50, 'linkage', 'single', 'ColumnPDist', 'euclidean', 'Standardize', 'column');
+
+% average linkage ; pearson correlation coefficient
+clustergram(train50, 'linkage', 'average', 'ColumnPDist', 'correlation', 'Standardize', 'column');
+% average linkage ; euclidean distance
+clustergram(train50, 'linkage', 'average', 'ColumnPDist', 'euclidean', 'Standardize', 'column');
+
+
