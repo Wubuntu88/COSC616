@@ -1,0 +1,2 @@
+The golub_train50_processed file must be transposed after being loaded.
+This is because each column is an indidual with cancer.
