@@ -6,6 +6,7 @@ PC = princomp(train50);
 train50_2D = train50 * PC(:, 1:2);
 
 [num_rows, cols] = size(train50);
+
 train50classes = [zeros(num_rows, 1) train502D];
 
 lastIndexOfClass1 = 27;
@@ -51,6 +52,7 @@ test50 = transpose(test50);
 test50_2D = test50 * PC(:, 1:2);
 
 [num_rows_test, cols_test] = size(test50);
+
 test50classes = [zeros(num_rows_test, 1) test50_2D];
 lastIndexInTestDataOfClass1 = 27;
 test50classes(1:lastIndexInTestDataOfClass1, 1) = 1;
@@ -76,12 +78,31 @@ fprintf('knn error (3 neighbors): %.2f\n', error_rate_3_neighbors);
 knn.NumNeighbors = 5;
 class_label = predict(knn, test50_2D);
 error_rate_5_neighbors = nnz(test_labels - class_label) / length(test_labels) * 100;
+fprintf('knn error (5 neighbors): %.2f\n', error_rate_5_neighbors);
 
 knn.NumNeighbors = 7;
 class_label = predict(knn, test50_2D);
 error_rate_7_neighbors = nnz(test_labels - class_label) / length(test_labels) * 100;
+fprintf('knn error (7 neighbors): %.2f\n', error_rate_7_neighbors);
 
+% part 9: use ANN to classify
+ANN_train_labels = [repmat([1 0], 27, 1);repmat([0 1], length(train_labels) - 27, 1)];
+ANN_test_labels = [repmat([1 0], 27, 1);repmat([0 1], length(test_labels) - 27, 1)];
 
+net = newff(train50_2D', ANN_train_labels', [4 5]);
+net.trainParam.epochs = 1000;
+net.trainParam.goal = 0.05;
+net.train(net, train50_2D', train_labels');
 
+predictions_ann = sim(net, test50_2D');
+[dummy_variable classes_labels_ann] = max(predictions_ann);
+
+ann_error = nnz(test_labels - classes_labels_ann') / length(test_labels) * 100;
+fprintf('ANN error: %.2f\n', error_rate_5_neighbors);
+
+%part 10: use svm to classify
+groups = multisvm(train50_2D, train_labels, test50_2D);
+error_SVM = sum(abs(groups - test_labels));
+fprintf('SVM error: %.2f\n', error_rate_5_neighbors);
 
 
