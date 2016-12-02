@@ -3,7 +3,7 @@ train50 = load('part1_50_genes/golub_train50_processed.tsv');
 train50 = transpose(train50);
 
 PC = princomp(train50);
-train502D = train50 * PC(:, 1:2);
+train50_2D = train50 * PC(:, 1:2);
 
 [num_rows, cols] = size(train50);
 train50classes = [zeros(num_rows, 1) train502D];
@@ -65,11 +65,23 @@ train_labels = zeros(num_rows, 1);
 train_labels(1:27, 1) = 1;
 train_labels(28:length(train_labels)) = 2;
 test_labels = zeros(num_rows_test, 1);
-test_labels(28:length(test_labels), 1) = 1;
+test_labels(1:27, 1) = 1;
 test_labels(28:length(test_labels), 1) = 2;
 
-knn = ClassificationKNN.fit(train502D, train_labels, 'NumNeighbors', 3, 'Distance', 'correlation');
+knn = ClassificationKNN.fit(train50_2D, train_labels, 'NumNeighbors', 3, 'Distance', 'euclidean');
 class_label = predict(knn, test50_2D);
-% so far terrible predictions
+error_rate_3_neighbors = nnz(test_labels - class_label) / length(test_labels) * 100;
+fprintf('knn error (3 neighbors): %.2f\n', error_rate_3_neighbors);
+
+knn.NumNeighbors = 5;
+class_label = predict(knn, test50_2D);
+error_rate_5_neighbors = nnz(test_labels - class_label) / length(test_labels) * 100;
+
+knn.NumNeighbors = 7;
+class_label = predict(knn, test50_2D);
+error_rate_7_neighbors = nnz(test_labels - class_label) / length(test_labels) * 100;
+
+
+
 
 
