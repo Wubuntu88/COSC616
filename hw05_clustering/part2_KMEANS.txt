@@ -1,0 +1,23 @@
+test52 = load('significant_genes_processed.csv');
+test52 = test52';
+[num_rows, num_cols] = size(test52);
+
+labels = zeros(num_rows, 1);
+
+%----- kmeans; distance: correlation
+
+[clusters, centers] = kmeans(test52, 2, 'dist', 'correlation');
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+error = nnz(clusters - labels);
+fprintf('error: %d\n', error);
+
+%----- kmeans; distance: euclidean
+
+[clusters, centers] = kmeans(test52, 2, 'dist', 'sqeuclidean');
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+error = nnz(clusters - labels);
+fprintf('error: %d\n', error);
+
+
