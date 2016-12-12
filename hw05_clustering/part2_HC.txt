@@ -1,0 +1,105 @@
+test52 = load('significant_genes_processed.csv');
+test52 = test52';
+[num_rows, num_cols] = size(test52);
+
+labels = zeros(num_rows, 1);
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+%part 2) Hierarchical clustering with 3 linkages; evaluate results against label
+
+%%-------- distance: correlation, linkage: average
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'average');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+%%-------- distance: correlation, linkage: single
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'single');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+%%-------- distance: correlation, linkage: complete
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'complete');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'complete', 'standardize', 'col');
+
+%switch labels because this clustering method assigns '2' to the first cluster
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+%%-------- distance: euclidean, linkage: average
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'average');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+%%-------- distance: euclidean, linkage: single
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'single');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+%%-------- distance: euclidean, linkage: complete
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'complete');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'complete', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error);
+
+
+
+
+
+
+
+
+
+
+
