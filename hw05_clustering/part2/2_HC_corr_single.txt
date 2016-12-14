@@ -1,0 +1,15 @@
+%%-------- distance: correlation, linkage: single
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'single');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 13
+diary off

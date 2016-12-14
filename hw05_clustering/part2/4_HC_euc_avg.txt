@@ -1,0 +1,15 @@
+%%-------- distance: euclidean, linkage: average
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'average');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 2
+diary off
