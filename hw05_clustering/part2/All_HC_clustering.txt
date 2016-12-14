@@ -1,0 +1,91 @@
+%%-------- distance: correlation, linkage: average
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'average');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 1
+diary off
+%%-------- distance: correlation, linkage: single
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'single');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 13
+diary off
+%%-------- distance: correlation, linkage: complete
+
+dist = pdist(test52, 'correlation');
+tree = linkage(dist, 'complete');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'complete', 'standardize', 'col');
+
+%switch labels because this clustering method assigns '2' to the first cluster
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 1
+diary off
+%%-------- distance: euclidean, linkage: average
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'average');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 2
+diary off
+%%-------- distance: euclidean, linkage: single
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'single');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'linkage', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 13
+diary off
+%%-------- distance: euclidean, linkage: complete
+
+dist = pdist(test52, 'euclidean');
+tree = linkage(dist, 'complete');
+%dendrogram(tree);
+clusters = cluster(tree, 'maxclust', 2);
+%clustergram(test52, 'complete', 'single', 'standardize', 'col');
+
+labels(1:20, 1) = 1;
+labels(21:34, 1) = 2;
+
+error = nnz(labels - clusters);
+fprintf('error: %d\n', error)
+error: 2
+diary off
