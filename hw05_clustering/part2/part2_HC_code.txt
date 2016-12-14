@@ -12,9 +12,9 @@ labels(21:34, 1) = 2;
 
 dist = pdist(test52, 'correlation');
 tree = linkage(dist, 'average');
-dendrogram(tree);
+%dendrogram(tree);
 clusters = cluster(tree, 'maxclust', 2);
-
+%clustergram(test52, 'linkage', 'average', 'standardize', 'col');
 
 labels(1:20, 1) = 1;
 labels(21:34, 1) = 2;
@@ -92,14 +92,3 @@ labels(21:34, 1) = 2;
 
 error = nnz(labels - clusters);
 fprintf('error: %d\n', error)
-
-
-
-
-
-
-
-
-
-
-
