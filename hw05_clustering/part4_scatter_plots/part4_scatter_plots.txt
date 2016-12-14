@@ -1,0 +1,17 @@
+test52 = load('significant_genes_processed.csv');
+test52 = test52';
+[num_rows, num_cols] = size(test52);
+
+%labels = zeros(num_rows, 1);
+%labels(1:20, 1) = 1;
+%labels(21:34, 1) = 2;
+
+PC = princomp(test52);
+test52_2D = test52 * PC;
+test52_2D = test52_2D(:, 1:2);
+
+%records with real labels attached
+%perform the clustering the the other files, and then copy and 
+%paste the following code to see the 2D scatter plots
+test2Dclass_orig = [clusters test52_2D];
+plotClass2D(test2Dclass_orig, 1, 18);
