@@ -1,0 +1,23 @@
+%----RUN 1
+[clusters, centers] = kmeans(test52, 2, 'dist', 'sqeuclidean');
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+error = nnz(clusters - labels);
+fprintf('error: %d\n', error);
+error: 1
+
+%----RUN 2
+[clusters, centers] = kmeans(test52, 2, 'dist', 'sqeuclidean');
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+error = nnz(clusters - labels);
+fprintf('error: %d\n', error);
+error: 1
+
+%----RUN 3
+>> [clusters, centers] = kmeans(test52, 2, 'dist', 'sqeuclidean');
+labels(1:20, 1) = 2;
+labels(21:34, 1) = 1;
+error = nnz(clusters - labels);
+fprintf('error: %d\n', error);
+error: 1
