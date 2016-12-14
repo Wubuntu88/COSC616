@@ -9,7 +9,7 @@ test52_2D = test52 * PC;
 test52_2D = test52_2D(:, 1:2);
 
 %------ SOM 1
-Q = test52_2D;
+Q = test52;
 Q = Q';
 net = newsom([min(Q, [], 2) max(Q,[],2)], [3, 1], 'hextop');
 net.trainParam.epochs = 100;
