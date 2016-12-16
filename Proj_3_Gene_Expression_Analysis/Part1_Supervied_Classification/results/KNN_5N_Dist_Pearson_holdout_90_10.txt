@@ -1,0 +1,35 @@
+% load data
+data = load('original_data/alon_processed.txt');
+data = data';
+[num_rows, num_cols] = size(data);
+normal = data(1:22, :);
+tumor = data(23:num_rows, :);
+
+[normal_rows, normal_cols] = size(normal);
+[tumor_rows, tumor_cols] = size(tumor);
+
+% apply holdout 90/10
+train_data = [normal(1:18, :); tumor(1:36, :)];
+test_data = [normal(19:normal_rows, :); tumor(37:tumor_rows, :)];
+
+% Label initiazation
+normal_labels = zeros(normal_rows, 1);
+normal_labels(:, :) = 1;
+
+tumor_labels = zeros(tumor_rows, 1);
+tumor_labels(:, :) = 2;
+
+% label creating for train / test
+train_labels = [normal_labels(1:18, :); tumor_labels(1:36, :)];
+test_labels = [normal_labels(19:normal_rows, :); tumor_labels(37:tumor_rows, :)];
+
+% KNN classification
+
+model = ClassificationKNN.fit(train_data, train_labels, 'NumNeighbors', 5, 'Distance', 'correlation');
+
+prediction_labels = predict(model, test_data);
+error_percent = nnz(test_labels - prediction_labels) / length(test_labels) * 100;
+fprintf('percent error: %.2f\n', error_percent);
+
+
+percent error: 12.50
