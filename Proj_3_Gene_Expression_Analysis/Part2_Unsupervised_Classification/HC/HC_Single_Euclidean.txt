@@ -1,4 +1,0 @@
-% load data
-data = load('original_data/alon_g100_processed.txt');
-data = data';
-[num_rows, num_cols] = size(data);
