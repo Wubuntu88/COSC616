@@ -10,9 +10,9 @@ tumor = data(23:num_rows, :);
 [normal_rows, normal_cols] = size(normal);
 [tumor_rows, tumor_cols] = size(tumor);
 
-% apply holdout 90/10
-train_data = [normal(1:18, :); tumor(1:36, :)];
-test_data = [normal(19:normal_rows, :); tumor(37:tumor_rows, :)];
+% apply holdout 65/35
+train_data = [normal(1:14, :); tumor(1:26, :)];
+test_data = [normal(15:normal_rows, :); tumor(27:tumor_rows, :)];
 
 % Label initiazation
 normal_labels = zeros(normal_rows, 1);
@@ -22,8 +22,8 @@ tumor_labels = zeros(tumor_rows, 1);
 tumor_labels(:, :) = 2;
 
 % label creating for train / test
-train_labels = [normal_labels(1:18, :); tumor_labels(1:36, :)];
-test_labels = [normal_labels(19:normal_rows, :); tumor_labels(37:tumor_rows, :)];
+train_labels = [normal_labels(1:14, :); tumor_labels(1:26, :)];
+test_labels = [normal_labels(15:normal_rows, :); tumor_labels(27:tumor_rows, :)];
 
 % KNN classification
 
