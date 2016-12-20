@@ -13,7 +13,16 @@ function plotClass2D(coord, mode, fontsize)
   y = coord(:, 3);
 
   % Only upto 7 colors!!!
-  colors = ['b','r','g','m','c','k','y'];
+  colors = [[0.9412 0.4706 0];
+[0.251 0 0.502];
+[0.502 0.251 0];
+[0 0.251 0];
+[0.502 0.502 0.502];
+[0.502 0.502 1];
+[0 0.502 0.502];
+[0.502 0 0];
+[1 0.502 0.502];
+[0 1 1]];
      
   % Produce plot to get axis bounds
   plot(x,y,'w.');
@@ -47,11 +56,11 @@ function plotClass2D(coord, mode, fontsize)
       if mode == 1
           text(x(i)+deltaX, y(i), num2str(i), ...
               'fontsize', fontsize, ...
-              'color', colors(c(i)));
+              'color', colors(c(i),:));
       elseif mode == 2
           text(x(i)-deltaX, y(i), num2str(c(i)), ...
               'fontsize', fontsize, ...
-              'color', colors(c(i)));
+              'color', colors(c(i,:)));
       end
       
   end;

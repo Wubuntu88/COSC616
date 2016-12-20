@@ -1,10 +1,10 @@
 data = load('original_data/iyer_processed.txt');
-data = data';
+%data = data'; % transposing in this case is not right
 [num_rows, num_cols] = size(data);
 
 dist = pdist(data, 'correlation');
 tree = linkage(dist, 'complete');
-clusters = cluster(tree, 'maxclust', 3);
+clusters = cluster(tree, 'maxclust', 10);
 
 PC = princomp(data);
 data_2D = data * PC;

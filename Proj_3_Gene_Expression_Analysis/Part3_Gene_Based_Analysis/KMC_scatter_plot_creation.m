@@ -1,11 +1,11 @@
 data = load('original_data/iyer_processed.txt');
-data = data';
+% data = data'; % transposing is wrong in this case
 [num_rows, num_cols] = size(data);
 
 distance_type = 'sqeuclidean';
 %distance_type = 'correlation';
 
-clusters = kmeans(data, 3, 'dist', distance_type);
+clusters = kmeans(data, 10, 'dist', distance_type);
 PC = princomp(data);
 data_2D = data * PC;
 data_2D = data_2D(:,1:2);

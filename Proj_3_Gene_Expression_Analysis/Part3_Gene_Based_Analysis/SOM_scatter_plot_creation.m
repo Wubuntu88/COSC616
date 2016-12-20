@@ -1,11 +1,11 @@
 data = load('original_data/iyer_processed.txt');
-data = data';
+% data = data'; % transposing is wrong in this case
 [num_rows, num_cols] = size(data);
 
 
 Q = data;
 Q = Q';
-net = newsom([min(Q,[],2) max(Q,[],2)], [3 1], 'hextop');
+net = newsom([min(Q,[],2) max(Q,[],2)], [10 1], 'hextop');
 iterations = 100;
 net.trainParam.epochs = iterations;
 net = train(net, Q);
