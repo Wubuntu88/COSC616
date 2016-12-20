@@ -1,0 +1,27 @@
+%%%%%-- Pearson Distances --%%%%%
+
+HC error rates distance: correlation, linkage: single
+errors: 20.00
+error rate: 32.26%
+-----------------------
+HC error rates distance: correlation, linkage: complete
+errors: 10.00
+error rate: 16.13%
+-----------------------
+HC error rates distance: correlation, linkage: average
+errors: 10.00
+error rate: 16.13%
+
+%%%%%-- Euclidean Distances --%%%%%
+
+HC error rates distance: euclidean, linkage: single
+errors: 21.00
+error rate: 33.87%
+-----------------------
+HC error rates distance: euclidean, linkage: complete
+errors: 21.00
+error rate: 33.87%
+-----------------------
+HC error rates distance: euclidean, linkage: average
+errors: 27.00
+error rate: 43.55%
