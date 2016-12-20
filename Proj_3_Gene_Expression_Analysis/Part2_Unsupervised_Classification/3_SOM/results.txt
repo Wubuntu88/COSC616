@@ -1,0 +1,4 @@
+>> SOM
+SOM error rates; iterations: 100
+errors: 19.00
+error rate: 30.65%

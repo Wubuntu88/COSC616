@@ -1,0 +1,11 @@
+KMC
+KMC error rates distance: sqeuclidean
+errors: 20.00
+error rate: 32.26%
+
+-----------------
+
+>> KMC
+KMC error rates distance: correlation
+errors: 8.00
+error rate: 12.90%
