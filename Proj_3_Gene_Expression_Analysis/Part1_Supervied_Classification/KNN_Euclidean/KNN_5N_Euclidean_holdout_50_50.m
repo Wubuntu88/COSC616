@@ -39,6 +39,3 @@ test2D = test_data * PC;
 
 test_labels_and_data = [prediction_labels test2D];
 plotClass2D(test_labels_and_data, 1, 16);
-
-
-
